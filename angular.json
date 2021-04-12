@@ -1,7 +1,10 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
+  "defaultProject": "tailwind-nx",
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
   "projects": {
     "tailwind-nx": {
       "projectType": "application",
@@ -10,25 +13,25 @@
           "style": "scss"
         }
       },
-      "root": "",
-      "sourceRoot": "src",
+      "root": "apps/tailwind-nx",
+      "sourceRoot": "apps/tailwind-nx/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/tailwind-nx",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "outputPath": "dist/apps/tailwind-nx",
+            "index": "apps/tailwind-nx/src/index.html",
+            "main": "apps/tailwind-nx/src/main.ts",
+            "polyfills": "apps/tailwind-nx/src/polyfills.ts",
+            "tsConfig": "apps/tailwind-nx/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "apps/tailwind-nx/src/favicon.ico",
+              "apps/tailwind-nx/src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "apps/tailwind-nx/src/styles.scss"
             ],
             "scripts": []
           },
@@ -36,8 +39,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "apps/tailwind-nx/src/environments/environment.ts",
+                  "with": "apps/tailwind-nx/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -82,16 +85,16 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
+            "main": "apps/tailwind-nx/src/test.ts",
+            "polyfills": "apps/tailwind-nx/src/polyfills.ts",
+            "tsConfig": "apps/tailwind-nx/tsconfig.spec.json",
+            "karmaConfig": "apps/tailwind-nx/karma.conf.js",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "apps/tailwind-nx/src/favicon.ico",
+              "apps/tailwind-nx/src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "apps/tailwind-nx/src/styles.scss"
             ],
             "scripts": []
           }
@@ -100,9 +103,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
+              "apps/tailwind-nx/tsconfig.app.json",
+              "apps/tailwind-nx/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -122,7 +124,33 @@
           }
         }
       }
+    },
+    "tailwind-nx-e2e": {
+      "root": "apps/tailwind-nx-e2e",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/tailwind-nx-e2e/protractor.conf.js",
+            "devServerTarget": "tailwind-nx:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "tailwind-nx:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/tailwind-nx-e2e/tsconfig.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
-  },
-  "defaultProject": "tailwind-nx"
+  }
 }

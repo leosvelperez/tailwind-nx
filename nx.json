@@ -1,0 +1,25 @@
+{
+  "npmScope": "tailwind-nx",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*",
+    "tsconfig.base.json": "*"
+  },
+  "projects": {
+    "tailwind-nx": {
+      "tags": []
+    },
+    "tailwind-nx-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "tailwind-nx"
+      ]
+    }
+  }
+}
